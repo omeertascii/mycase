@@ -224,6 +224,19 @@ doc = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "pygments-
 test = ["build[virtualenv] (>=1.0.3)", "filelock (>=3.4.0)", "importlib-metadata", "ini2toml[lite] (>=0.14)", "jaraco.develop (>=7.21)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "jaraco.test", "mypy (==1.11.*)", "packaging (>=23.2)", "pip (>=19.1)", "pyproject-hooks (!=1.1)", "pytest (>=6,!=8.1.*)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-home (>=0.5)", "pytest-mypy", "pytest-perf", "pytest-ruff (<0.4)", "pytest-ruff (>=0.2.1)", "pytest-ruff (>=0.3.2)", "pytest-subprocess", "pytest-timeout", "pytest-xdist (>=3)", "tomli", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
 
 [[package]]
+name = "simplejwt"
+version = "2.0.1"
+description = "A dead simple JWT library"
+optional = false
+python-versions = "*"
+files = [
+    {file = "simplejwt-2.0.1.tar.gz", hash = "sha256:3d9054c3f6c8ebca49693568b483f4bafcfdf962fe9e60f5bf0855bdc19761a2"},
+]
+
+[package.dependencies]
+typing = "*"
+
+[[package]]
 name = "sqlparse"
 version = "0.5.1"
 description = "A non-validating SQL parser."
@@ -237,6 +250,17 @@ files = [
 [package.extras]
 dev = ["build", "hatch"]
 doc = ["sphinx"]
+
+[[package]]
+name = "typing"
+version = "3.7.4.3"
+description = "Type Hints for Python"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "typing-3.7.4.3-py2-none-any.whl", hash = "sha256:283d868f5071ab9ad873e5e52268d611e851c870a2ba354193026f2dfb29d8b5"},
+    {file = "typing-3.7.4.3.tar.gz", hash = "sha256:1187fb9c82fd670d10aa07bbb6cfcfe4bdda42d6fab8d5134f04e8c4d0b71cc9"},
+]
 
 [[package]]
 name = "typing-extensions"
@@ -277,7 +301,17 @@ h2 = ["h2 (>=4,<5)"]
 socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
+[[package]]
+name = "views"
+version = "0.3"
+description = "views"
+optional = false
+python-versions = "*"
+files = [
+    {file = "views-0.3.tar.gz", hash = "sha256:17f60ecbc213d5aaa8f5359973ab8840071123547e1897cae2f6e762b62dcd68"},
+]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "3.10.14"
-content-hash = "22576f80b8640d77385ab9f232d84d6c88321c4dbecbb6ff87ed797bf2c32f95"
+content-hash = "80d9e2bdf88fd33628171d6871d6b0c5a36e7c63eca22b9de11c222bf19e32bd"
