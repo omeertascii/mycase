@@ -1,13 +1,10 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from datetime import timedelta
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-#.env 
-load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -15,11 +12,17 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-k1h8#$*84=z0#)$-!6wnkx44*2+tj995=tu^t*9%rbvaa+bn++'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-DEBUG = os.getenv("DEBUG")  == 'True'
+# DEBUG = os.getenv("DEBUG")  == 'True'
+# DEBUG = config('DEBUG', default = False, cast=bool)
+
 DATABASE_URL = os.getenv("DATABASE_URL")
+
+#.env
+load_dotenv()
 
 ALLOWED_HOSTS = []
 
@@ -33,23 +36,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework.authtoken',
+    'rest_framework.authtoken.admin',
     'rest_framework',
-    'rest_framework.authtoken'
-    'rest_framework_simplejwt.token_blacklist',
-    'my_app',
+    'social_django',
+    'discord',
+    'celery',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.discord.DiscordOAuth2',
+)
+
+SOCIAL_AUTH_DISCORD_KEY = '<CLIENT_ID>'
+SOCIAL_AUTH_DISCORD_SECRET = '<CLIENT_SECRET>'
+SOCIAL_AUTH_DISCORD_SCOPE = ['identify', 'email', 'guilds']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':(
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     )
-}
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
 }
 
 MIDDLEWARE = [
@@ -62,7 +70,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mycase.urls'
+#CELERY_BROKER_URL = f'amqp://{config("RABBITMQ_DEFAULT_USER")}:{config("RABBITMQ_DEFAULT_PASS")}@{config("RABBITMQ_HOST")}:{config("RABBITMQ_PORT")}/'
+CELERY_BROKER_URL = 'amqp://user:password@rabbitmq:5672/'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
@@ -80,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mycase.wsgi.application'
+WSGI_APPLICATION = 'main.wsgi.application'
 
 
 # Database
@@ -90,8 +103,27 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        },
+    
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydatabase',
+        'USER': 'myuser',
+        'PASSWORD': 'mypassword',
+        'HOST': 'db',
+        'PORT': '5432',
+        },
+    
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('POSTGRES_DB'),
+        'USER': config('POSTGRES_USER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('POSTGRES_HOST'),
+        'PORT': config('POSTGRES_PORT'),
+        },
     }
-}
+
 
 
 # Password validation

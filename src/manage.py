@@ -1,12 +1,13 @@
-#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
 import os
 import sys
+from rest_framework.authtoken.models import Token
 
+"""Django's command-line utility for administrative tasks."""
+#!/usr/bin/env python
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mycase.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -15,8 +16,10 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+        
     execute_from_command_line(sys.argv)
-
-
+    token = Token.objects.create(user=id)
+    print(token.key)    
+    
 if __name__ == '__main__':
     main()

@@ -12,8 +12,16 @@ django = "^5.1"
 djangorestframework = "^3.15.2"
 setuptools = "^72.1.0"
 python-dotenv = "^1.0.1"
-simplejwt = "^2.0.1"
 views = "^0.3"
+psycopg2-binary = "^2.9.9"
+python-decouple = "^3.8"
+serializers = "^0.2.4"
+discord-py = "^2.4.0"
+social-auth-app-django = "^5.4.2"
+discord = "^2.3.2"
+collection = "^0.1.6"
+env = "^0.1.0"
+drf-spectacular = "^0.27.2"
 
 
 [build-system]
