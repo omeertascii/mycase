@@ -1,6 +1,5 @@
 import os
 import sys
-from rest_framework.authtoken.models import Token
 
 """Django's command-line utility for administrative tasks."""
 #!/usr/bin/env python
@@ -18,8 +17,6 @@ def main():
         ) from exc
         
     execute_from_command_line(sys.argv)
-    token = Token.objects.create(user=id)
-    print(token.key)    
     
 if __name__ == '__main__':
     main()
