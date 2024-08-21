@@ -1,9 +1,11 @@
-from discord import http
+from django.utils.translation import gettext as _
+from rest_framework.permissions import BasePermission
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from drf_spectacular.utils import extend_schema
 from rest_framework.permissions import IsAuthenticated
-from .serializers import DiscordCallbackViewset
+from app.permissions import CallbackPermission
+from discord.serializers import DiscordCallbackViewset
 from rest_framework.status import HTTP_402_PAYMENT_REQUIRED
 from app.serilaizers import (
     AuthorizationUrlSerializer,

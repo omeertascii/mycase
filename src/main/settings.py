@@ -36,12 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework.authtoken',
-    'rest_framework.authtoken.admin',
     'rest_framework',
-    'social_django',
-    'discord',
-    'celery',
+    
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -70,11 +66,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#CELERY_BROKER_URL = f'amqp://{config("RABBITMQ_DEFAULT_USER")}:{config("RABBITMQ_DEFAULT_PASS")}@{config("RABBITMQ_HOST")}:{config("RABBITMQ_PORT")}/'
-CELERY_BROKER_URL = 'amqp://user:password@rabbitmq:5672/'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-
 ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
@@ -99,21 +90,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        },
-    
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'myuser',
-        'PASSWORD': 'mypassword',
-        'HOST': 'db',
-        'PORT': '5432',
-        },
-    
+DATABASES = {    
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('POSTGRES_DB'),
