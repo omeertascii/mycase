@@ -19,8 +19,6 @@ DEBUG = True
 # DEBUG = os.getenv("DEBUG")  == 'True'
 # DEBUG = config('DEBUG', default = False, cast=bool)
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-
 #.env
 load_dotenv()
 
@@ -99,8 +97,8 @@ DATABASES = {
         'PASSWORD': config('POSTGRES_PASSWORD'),
         'HOST': config('POSTGRES_HOST'),
         'PORT': config('POSTGRES_PORT'),
-        },
-    }
+     },
+}
 
 
 
