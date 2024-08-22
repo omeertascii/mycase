@@ -138,6 +138,16 @@ files = [
 frozenlist = ">=1.1.0"
 
 [[package]]
+name = "app"
+version = "0.0.1"
+description = "a simple egg"
+optional = false
+python-versions = "*"
+files = [
+    {file = "app-0.0.1.zip", hash = "sha256:214549e746d777292d807eec7713c2cea332e08e037c923cd61ee1d5ab7a127f"},
+]
+
+[[package]]
 name = "asgiref"
 version = "3.8.1"
 description = "ASGI specs, helper code, and adapters"
@@ -1459,4 +1469,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "3.10.14"
-content-hash = "3de996b40c77bee8de403d653246aa727f08c74047bb68f8ef900fb81d0d0839"
+content-hash = "b8fcd4937c42645ad81f4aa5ba335bea977b1078d09537738440d5dd718f668e"
