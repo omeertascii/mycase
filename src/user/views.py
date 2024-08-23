@@ -9,16 +9,10 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserCreateSerializer
     
-    # TODO: get serializer class fonksiyonu yaz login için özelleştir.
-
-    # TODO: login view yazılacak
-    # @action
-    # model User
-    # login seriliazer yazılacak
-    # serializer fields username - passsword
-    # hata varsa hata dönülecek şifre yanlışsa filan
-    # response serializer yazılacak token dönecek
-    # restframework token
+    def get_serilaizer_class(self):
+        if self.action == 'login':
+            return LoginSerilaizer
+        return UserCreateSerializer
     
     @action(detail=False, methods=["POST"], url_path="login", url_name="login")
     
