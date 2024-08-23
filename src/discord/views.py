@@ -1,17 +1,15 @@
 from django.utils.translation import gettext as _
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from drf_spectacular.utils import extend_schema
-from rest_framework.permissions import IsAuthenticated
-from app.permissions import CallbackPermission
-from discord.serializers import DiscordCallbackViewset
+from discord.permissions import CallbackPermission
 from rest_framework.status import HTTP_402_PAYMENT_REQUIRED
-from app.serilaizers import (
+from discord.serializers import (
     AuthorizationUrlSerializer,
     DefaultExceptionSerializer,
 )
-from app.models import Membership  # Import the Membership class from the appropriate module
+from discord.models import Membership
 
 class DiscordCallbackViewset(viewsets.GenericViewSet):
     permission_classes = [IsAuthenticated, CallbackPermission]
